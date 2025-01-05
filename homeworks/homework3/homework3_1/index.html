@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+/*Вивести всі відомі вам типи даних у консоль. Використовуючи оператор typeof та console.log*/
+
+function showTypes() {
+    const stringValue = "Привіт, світ!"; 
+    const numberValue = 42; 
+    const booleanValue = true; 
+    const nullValue = null; 
+    const undefinedValue = undefined; 
+    const symbolValue = Symbol("символ"); 
+    const objectValue = { key: "value" }; 
+    const arrayValue = [1, 2, 3]; 
+    const functionValue = function () {}; 
+    const bigIntValue = BigInt(1234567890);
+
+   
+    console.log("stringValue:", typeof stringValue); 
+    console.log("numberValue:", typeof numberValue); 
+    console.log("booleanValue:", typeof booleanValue); 
+    console.log("nullValue:", typeof nullValue); 
+    console.log("undefinedValue:", typeof undefinedValue); 
+    console.log("symbolValue:", typeof symbolValue); 
+    console.log("objectValue:", typeof objectValue);
+    console.log("arrayValue:", typeof arrayValue); 
+    console.log("functionValue:", typeof functionValue); 
+    console.log("bigIntValue:", typeof bigIntValue);
+}
+</script>
+<body>
+    <div>
+        <button onclick="showTypes()"> Типи даних</button>
+    </div>
+</body>
+</html>
