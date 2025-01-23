@@ -1,5 +1,5 @@
-function averageOfNumbers(array) {
-    const numbers = array.filter((item) => typeof item === 'number');
+function averageOfNumbers(mixedArray) {
+    const numbers = mixedArray.filter((item) => typeof item === 'number');
 
     if (numbers.length === 0) {
         return null;
