@@ -1,12 +1,12 @@
 li {
     padding: 10px;
     margin: 5px 0;
-    background-color: #f8f9fa; /* Світлий фон */
+    background-color: #f8f9fa;
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s;
 }
 
 li:hover {
-    background-color: #e9ecef; /* Трохи темніший фон при наведенні */
+    background-color: #e9ecef;
 }
