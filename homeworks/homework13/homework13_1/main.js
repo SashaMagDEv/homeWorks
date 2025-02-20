@@ -33,6 +33,7 @@ document.getElementById("contactForm").addEventListener("submit", (event) => {
 
     if (isValid) {
         console.table({ Name: name, Email: email, Phone: phone, Message: message });
+        document.getElementById("contactForm").reset();
         alert('Форма відправлена');
     }
 })
