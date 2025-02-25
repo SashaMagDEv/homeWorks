@@ -1,0 +1,69 @@
+.container {
+    margin: 40px auto;
+    font-family: Arial, sans-serif;
+}
+.slider-container {
+    position: relative;
+    overflow: visible;
+}
+.slider-image {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 700px;
+    height: 400px;
+    margin: 0 auto;
+
+}
+.slider-image img {
+    width: 100%;
+    display: block;
+}
+.controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+.controls button {
+    pointer-events: auto;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 40%;
+    transition: background 0.3s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.controls-prev {
+    left: -50px;
+}
+.controls-next {
+    right: -50px;
+}
+.controls button:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.dots-container {
+    text-align: center;
+    margin-top: 10px;
+}
+.dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 5px;
+    background: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.dot.active {
+    background: #333;
+}
