@@ -12,12 +12,14 @@ let current = 0;
 const nextBtn = document.getElementById("next-button");
 const prevBtn = document.getElementById("prev-button");
 const imgSlider = document.getElementById("sliderImg");
-const dotsContainer = document.getElementById("dots")
+const dotsContainer = document.getElementById("dots");
 
-function updateImage() {
-    imgSlider.src = images[current];
-    updateDots();
+const slides = document.querySelectorAll(".sliderImg");
 
+function updateSlide() {
+    slides.forEach((slide, index) => {
+        slide.classList.toggle("active", index === current);
+    })
     if (current === 0) {
         prevBtn.style.display = "none";
     } else {
@@ -30,7 +32,23 @@ function updateImage() {
         nextBtn.style.display = "block";
     }
 }
-updateImage()
+updateDots()
+
+images.forEach((imgSrc, index) => {
+    let slideDiv = document.createElement("div");
+    slideDiv.classList.add('slide');
+    if (index === 0) slideDiv.classList.add("active");
+
+    let img = document.createElement("img");
+    img.src = imgSrc;
+    img.alt = "слайд " + (index + 1);
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "cover";
+
+    slideDiv.appendChild(img);
+    imgSlider.appendChild(slideDiv);
+})
 
 function updateDots() {
     let dots = document.querySelectorAll(".dot");
@@ -38,13 +56,14 @@ function updateDots() {
         dot.classList.toggle("active", index === current)
     })
 }
+
 function createDots() {
     images.forEach((_, index) =>{
         let dot = document.createElement("span");
         dot.classList.add("dot");
         dot.addEventListener("click", () => {
             current = index;
-            updateImage();
+            updateSlide();
         })
         dotsContainer.appendChild(dot)
     })
@@ -52,11 +71,11 @@ function createDots() {
 }
 nextBtn.addEventListener("click", () => {
     current = (current + 1);
-    updateImage();
+    updateSlide();
 })
 prevBtn.addEventListener("click", () => {
     current = (current - 1);
-    updateImage();
+    updateSlide();
 })
 createDots();
 
