@@ -12,6 +12,17 @@ class BankAccount {
             console.log("сума для внесення має бути додатньою");
         }
     }
+    withdraw(amount) {
+        if (amount <= 0) {
+            console.log("Сума для зняття має бути додатньою");
+            return;
+        }
+        if(this.balance < amount) {
+            console.log("Недостатньо коштів на рахунку")
+            return;
+        }
+        this.balance -= amount
+    }
 }
 const account = new BankAccount(1000)
 
@@ -24,4 +35,7 @@ account.deposit(-200);
 console.log(account.getBalance());
 
 account.deposit(300);
+console.log(account.getBalance());
+
+account.withdraw(800);
 console.log(account.getBalance());
