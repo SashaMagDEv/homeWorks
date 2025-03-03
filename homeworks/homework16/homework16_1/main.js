@@ -15,7 +15,7 @@ class Student {
     getAverageMark() {
         if (this.marks.length === 0) return 0;
         const sum = this.marks.reduce((acc, mark) => acc + mark, 0);
-        return sum / this.marks.length;
+        return sum / this.marks.length.toFixed(2);
     }
 
     present() {
@@ -27,7 +27,7 @@ class Student {
     }
 
     absent() {
-        if (this.attendance.length > 25) {
+        if (this.attendance.length < 25) {
             this.attendance.push(false);
         } else {
             console.log("Запис відвідування заповнений");
@@ -37,14 +37,14 @@ class Student {
     getAttendanceRatio() {
         if (this.attendance.length === 0) return 0;
         const presentCount = this.attendance.filter(present => present).length;
-        return presentCount / this.attendance.length;
+        return presentCount / this.attendance.length.toFixed(2);
     }
 
     summary() {
         const avgMark = this.getAverageMark();
         const attendanceRadio = this.getAttendanceRatio();
 
-        if (avgMark > 90 && attendanceRadio > 0.9) {
+        if (avgMark >= 90 && attendanceRadio >= 0.9) {
             return "Молодець";
         } else if (avgMark < 90 && attendanceRadio < 0.9) {
             return "Редиска";
