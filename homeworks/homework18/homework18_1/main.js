@@ -11,8 +11,6 @@ function formatTime(time) {
 
 function startStartTime() {
     const intervalStart = setInterval(() => {
-
-        // div.innerText = formatTime(startTimes)
         div.innerHTML = `Таймер запуститься через <span style="color: red;">${startTimes}</span> секунди`;
         div.style.fontSize = '100px';
         div.style.textAlign = 'center';
