@@ -31,11 +31,11 @@ console.log(account.getBalance());
 account.deposit(500);
 console.log(account.getBalance());
 
-account.deposit(-200);
+account.deposit(200);
 console.log(account.getBalance());
-
 account.deposit(300);
+
 console.log(account.getBalance());
 
-account.withdraw(800);
+account.withdraw(4000);
 console.log(account.getBalance());
