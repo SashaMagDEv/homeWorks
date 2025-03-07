@@ -23,21 +23,23 @@ function startStartTime() {
     }, 1000)
 }
 startStartTime()
-setTimeout(() =>{
-    function startTimer() {
+setTimeout(() => {
+    if (timeLeft > 0) {
+        function startTimer() {
 
-    const interval = setInterval(() => {
-        div.innerText = formatTime(timeLeft);
-        div.style.fontSize = '100px';
-        div.style.textAlign = 'center';
-        div.style.color = 'black';
-        if (timeLeft === 0) {
-            clearInterval(interval)
-        } else  {
-            timeLeft--;
+            const interval = setInterval(() => {
+                div.innerText = formatTime(timeLeft);
+                div.style.fontSize = '100px';
+                div.style.textAlign = 'center';
+                div.style.color = 'black';
+                if (timeLeft === 0) {
+                    clearInterval(interval)
+                } else  {
+                    timeLeft--;
+                }
+            }, 1000);
         }
-    }, 1000);
-}
-    startTimer();
-}, 4000);
+        startTimer();
+    }
+}, startTimes * 1000);
 
