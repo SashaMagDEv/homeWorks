@@ -6,31 +6,92 @@ const fetchTodos = async () => {
         todos.forEach(todo => {
             const addLi = document.createElement("li");
             const addBut = document.createElement("button");
+            const editBut = document.createElement('button');
+            const taskText = document.createElement("span");
 
-            addLi.textContent = todo.title;
+            taskText.textContent = todo.title;
+            if (todo.completed) {
+                taskText.style.textDecoration = "line-through";
+            }
+            taskText.classList.add("me-auto");
+
             addLi.classList.add("js-group-item", "bg-light", "rounded", "p-2", "d-flex", "justify-content-between");
+
+            editBut.textContent = "Редагувати";
+            editBut.classList.add("btn", "btn-primary", "btn-sm", "me-2");
+            editBut.addEventListener("click", async () => {
+                const newTitle = prompt("Введіть новий текст завдання:", todo.title);
+                if (newTitle && newTitle.trim() !== "") {
+                    try {
+                        const response = await fetch(`http://localhost:3001/todos/update/${todo._id}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ title: newTitle.trim() })
+                        });
+
+                        if (response.ok) {
+                            taskText.textContent = newTitle.trim();
+                            console.log("Завдання оновлено");
+                        } else {
+                            console.error("Помилка при оновленні");
+                        }
+                    } catch (error) {
+                        console.error("Помилка запиту на оновлення:", error);
+                    }
+                }
+            });
 
             addBut.textContent = "Видалити";
             addBut.classList.add("btn", "btn-danger", "btn-sm");
             addBut.addEventListener("click", async () => {
-
                 try {
                     const response = await fetch(`http://localhost:3001/todos/delete/${todo._id}`, {
                         method: 'DELETE',
                     });
-                    // console.log("ID завдання", todo._id);
                     if (response.ok) {
                         addLi.remove();
-                        console.log('Завдання видалено з БД');
+                        console.log('Завдання видалено');
                     } else {
-                        console.error('Не вдалося видалити завдання з БД');
+                        console.error('Не вдалося видалити завдання');
                     }
                 } catch (err) {
-                    console.error('Помилка видалення завдання з БД:', err);
+                    console.error('Помилка видалення завдання:', err);
                 }
             });
 
-            addLi.appendChild(addBut);
+            taskText.addEventListener("click", async () => {
+                const newCompletedStatus = !todo.completed;  // Перемикаємо статус
+
+                taskText.style.textDecoration = newCompletedStatus ? "line-through" : "none";
+
+                try {
+                    const response = await fetch(`http://localhost:3001/todos/update/${todo._id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ completed: newCompletedStatus })
+                    });
+
+                    if (response.ok) {
+                        todo.completed = newCompletedStatus;
+                        console.log("Статус завдання оновлено");
+                    } else {
+                        console.error("Помилка при оновленні статусу");
+                    }
+                } catch (error) {
+                    console.error("Помилка запиту на оновлення статусу:", error);
+                }
+            });
+
+            const buttonCont = document.createElement('div');
+            buttonCont.appendChild(editBut);
+            buttonCont.appendChild(addBut);
+
+            addLi.appendChild(taskText);
+            addLi.appendChild(buttonCont);
             document.getElementById("listTask").appendChild(addLi);
         });
     } catch (error) {
@@ -39,52 +100,5 @@ const fetchTodos = async () => {
 };
 
 fetchTodos();
-
-document.getElementById("addTask").addEventListener("click", async () => {
-    const inputTask = document.getElementById("inputTask");
-    const textTask = inputTask.value.trim();
-
-    if (textTask !== "") {
-        const newTask = {
-            title: textTask,
-            completed: false
-        };
-
-        try {
-            const response = await fetch('http://localhost:3001/todos/create', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newTask)
-            });
-
-            const data = await response.json();
-            console.log('Завдання створено:', data);
-
-            const addLi = document.createElement("li");
-            const addBut = document.createElement("button");
-
-            addLi.textContent = textTask;
-            addLi.classList.add("js-group-item", "bg-light", "rounded", "p-2", "d-flex", "justify-content-between");
-
-            addBut.textContent = "Видалити";
-            addBut.classList.add("btn", "btn-danger", "btn-sm");
-            addBut.addEventListener("click",() => {
-                addLi.remove();
-            });
-
-            addLi.appendChild(addBut);
-            document.getElementById("listTask").appendChild(addLi);
-
-            inputTask.value = "";
-        } catch (err) {
-            console.error('Помилка створення завдання:', err);
-        }
-    } else {
-        alert("Введіть завдання!");
-    }
-});
-
 
 

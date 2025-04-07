@@ -23,6 +23,28 @@ router.post('/create', async (req, res) => {
     }
 });
 
+router.put('/update/:id', async (req, res) => {
+    const { id } = req.params;
+    const { title, completed } = req.body;
+
+    try {
+        const updateTodo = await Todo.findByIdAndUpdate(
+            id,
+            { title, completed },
+            { new: true }
+        );
+
+        if (!updateTodo) {
+            return res.status(404).json({ error: 'Завдання не знайдено' });
+        }
+
+        res.json(updateTodo);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Помилка при оновленні' });
+    }
+});
+
 router.delete('/delete/:id', async (req, res) => {
     try {
         const todoId = req.params.id;

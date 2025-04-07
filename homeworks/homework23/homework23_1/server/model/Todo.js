@@ -7,7 +7,8 @@ const listSchema = new Schema({
     },
     completed: {
         type: Boolean,
-        default: false }
+        completed: { type: Boolean, default: false }
+    }
 }, {
     timestamps: true
 })
