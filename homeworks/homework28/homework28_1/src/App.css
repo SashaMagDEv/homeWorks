@@ -1,0 +1,25 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.App {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  font-family: sans-serif;
+}
+
+input {
+  padding: 0.5rem;
+  margin-right: 1rem;
+}
+input:hover {
+  border-bottom-color: blue;
+}
+
+button {
+  padding: 0.5rem 1rem;
+}
