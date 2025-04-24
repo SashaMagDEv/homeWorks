@@ -1,34 +1,34 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-
-const TodoSchema = Yup.object().shape({
-    task: Yup.string()
-        .min(5, 'Мінімум 5 символів')
-        .required('Поле обовʼязкове'),
-});
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
 const TodoForm = ({ addTodo }) => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        reset
+    } = useForm();
+
+    const onSubmit = (data) => {
+        addTodo(data.text);
+        reset();
+    };
+
     return (
-        <Formik
-            initialValues={{ task: '' }}
-            validationSchema={TodoSchema}
-            onSubmit={(values, { resetForm }) => {
-                addTodo(values.task);
-                resetForm();
-            }}
-        >
-            {() => (
-                <Form>
-                    <Field
-                        type="text"
-                        name="task"
-                        placeholder="Введіть завдання"
-                    />
-                    <ErrorMessage name="task" component="div" style={{ color: 'red' }} />
-                    <button type="submit">Додати</button>
-                </Form>
-            )}
-        </Formik>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <input
+                {...register('text', {
+                    required: 'поле обовʼязкове',
+                    minLength: {
+                        value: 5,
+                        message: 'мінімум 5 символів'
+                    }
+                })}
+                placeholder="Нове завдання"
+            />
+            {errors.text && <div style={{ color: 'red' }}>{errors.text.message}</div>}
+            <button type="submit">Додати</button>
+        </form>
     );
 };
 
