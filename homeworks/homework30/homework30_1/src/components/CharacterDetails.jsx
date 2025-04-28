@@ -1,21 +1,21 @@
 import { useSelector } from 'react-redux';
 
 const CharacterDetails = () => {
-    const { character, loading, error } = useSelector((state) => state.character);
+    const { user, loading, error } = useSelector((state) => state.user);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
-    if (!character) return <p>No character loaded.</p>;
+    if (!user) return <p>No character loaded.</p>;
 
     return (
         <div>
-            <h2>{character.name}</h2>
-            <p>Height: {character.height}</p>
-            <p>Email: {character.email}</p>
-            <p>Phone: {character.phone}</p>
-            <p>City: {character.address.city}</p>
+            <h2>{user.name}</h2>
+            <p>Email: {user.email}</p>
+            <p>Phone: {user.phone}</p>
+            <p>City: {user.address.city}</p>
             <p>
-                <span>Geo lat: {character.address.geo.lat}</span> | <span>lng: {character.address.geo.lng}</span>
+                <span>Geo lat: {user.address?.geo?.lat}</span> |{' '}
+                <span>lng: {user.address?.geo?.lng}</span>
             </p>
         </div>
     );

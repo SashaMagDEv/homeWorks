@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux';
-import { clearCharacter } from '../store/features/character/characterSlice';
+import { clearUser } from '../store/features/user/userSlice.js';
 
 const Footer = () => {
     const dispatch = useDispatch();
 
     return (
         <footer>
-            <button onClick={() => dispatch(clearCharacter())}>Clear</button>
+            <button onClick={() => dispatch(clearUser())}>Clear</button>
         </footer>
     );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchCharacterById } from '../store/features/character/characterThunks';
+import {fetchUser} from '../store/features/user/userThunk.js';
 import CharacterDetails from '../components/CharacterDetails';
 
 const Main = () => {
@@ -8,7 +8,7 @@ const Main = () => {
     const dispatch = useDispatch();
 
     const handleFetch = () => {
-        dispatch(fetchCharacterById(id));
+        dispatch(fetchUser(id));
     };
 
     return (

@@ -5,7 +5,7 @@ const Header = () => {
 
     return (
         <header>
-            <h1>SWAPI Character Info</h1>
+            <h1>SWAPI user Info</h1>
         </header>
     );
 };
