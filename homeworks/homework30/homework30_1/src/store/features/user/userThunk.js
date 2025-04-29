@@ -8,7 +8,7 @@ export const fetchUser = createAsyncThunk(
             const res = await axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`);
             return res.data;
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.message || 'Не вдалося завантажити користувача');
+            return thunkAPI.rejectWithValue(error.message || 'Не вдалося завантажити User');
         }
     }
 );
