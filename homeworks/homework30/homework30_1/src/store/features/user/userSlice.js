@@ -29,7 +29,7 @@ const userSlice = createSlice({
             })
             .addCase(fetchUser.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.payload || 'Щось пішло не так!';
+                state.error = action.payload || 'Щось пішло не так';
             });
     },
 });
