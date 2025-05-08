@@ -1,4 +1,4 @@
-const Resume = () => {
+const ResumePage = () => {
     return (
         <>
             <div className={'mt-5 border-b border-solid py-5'}>
@@ -61,4 +61,4 @@ const Resume = () => {
         </>
     )
 }
-export default Resume;
+export default ResumePage;

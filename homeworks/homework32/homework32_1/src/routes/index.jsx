@@ -1,15 +1,20 @@
 import React from 'react';
-import Resume from '../pages/Resume';
-import TodoApp from "../pages/TodoApp.jsx";
+import ResumePage from '../pages/ResumePage.jsx';
+import TodoPage from "../pages/TodoPage.jsx";
+import SwapiPage from "../pages/SwapiPage.jsx";
 
 const routes = [
     {
         path: '/',
-        element: <Resume />
+        element: <ResumePage />
     },
     {
         path: '/todo',
-        element: <TodoApp />
+        element: <TodoPage />
+    },
+    {
+        path: '/swapi',
+        element: <SwapiPage />
     }
 ];
 

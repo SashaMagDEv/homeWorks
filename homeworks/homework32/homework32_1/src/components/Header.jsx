@@ -11,6 +11,8 @@ const Header = () => {
                 return 'Резюме';
             case '/todo':
                 return 'TODO';
+            case '/swapi':
+                return 'SWAPI';
             default:
                 return 'My Profile';
         }
@@ -22,6 +24,7 @@ const Header = () => {
                 <div>
                     <Button color="inherit" component={Link} to="/">Головна</Button>
                     <Button color="inherit" component={Link} to="/todo">TODO</Button>
+                    <Button color="inherit" component={Link} to="/swapi">SWAPI</Button>
                 </div>
             </Toolbar>
         </AppBar>

@@ -9,7 +9,7 @@ import {
     loadTodos,
 } from '../store';
 
-const TodoApp = () => {
+const TodoPage = () => {
     const [text, setText] = useState('');
     const todos = useSelector((state) => state.todos);
     const dispatch = useDispatch();
@@ -63,4 +63,4 @@ const TodoApp = () => {
     );
 };
 
-export default TodoApp;
+export default TodoPage;
