@@ -70,7 +70,7 @@ describe('TodoPage', () => {
         expect(dispatchSpy).not.toHaveBeenCalledWith(expect.objectContaining({ type: 'ASYNC_ADD_TODO' }));
     });
 
-    test('видаляє задачу'), () => {
+    test('видаляє задачу', () => {
         renderWithStore(<TodoPage />, { store });
 
         const deleteButton = screen.getAllByText('Видалити');
@@ -80,5 +80,5 @@ describe('TodoPage', () => {
         fireEvent.click(deleteButton[0])
 
         expect(dispatchSpy).toHaveBeenCalledWith(removeTodo(1))
-    }
+    })
 });
